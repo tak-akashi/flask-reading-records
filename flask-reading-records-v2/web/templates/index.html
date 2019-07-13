@@ -1,0 +1,28 @@
+<!-- web/templates/index.html -->
+
+{% extends "base.html" %}
+{% block content %}
+<br>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">書籍名</th>
+      <th scope="col">著者</th>
+      <th scope="col">ジャンル</th>
+      <th scope="col">読了日</th>
+    </tr>
+  </thead>
+
+  {% for book in books%}
+      <tbody>
+        <tr>
+          <td> <a href="{{url_for('update_book', id=book.id)}}">{{ book.title }} </a></td>
+          <td> {{ book.author }} </td>
+          <td> {{ book.genre }} </td>
+          <td> {{ book.date }} </td>
+        </tr>
+      </tbody>
+  {% endfor %}
+</table>
+
+{% endblock %}
