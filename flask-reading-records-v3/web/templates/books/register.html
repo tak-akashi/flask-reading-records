@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="container">
+    <form class="form-group" method="POST">
+      {{ form.hidden_tag() }}
+      <br>
+      <div class="form-group">
+        {{ form.title.label(class="form-control-label") }}
+        {{ form.title(class="form-control form-control-lg") }}
+      </div>
+      <div class="form-group">
+        {{ form.author.label(class="form-control-label") }}
+        {{ form.author(class="form-control form-control-lg") }}
+      </div>
+      <div class="form-group">
+        {{ form.genre.label(class="form-control-label") }}
+        {{ form.genre(class="form-control form-control-lg") }}
+      </div>
+      <div class="form-group">
+        {{ form.date.label(class="form-control-label") }}
+        {{ form.date(class="form-control form-control-lg", placeholder="2019-05-01") }}
+      </div>
+      {% if errors %}
+        <div class="alert alert-primary" role="alert">
+          {{ errors }}
+        </div>
+      {% endif %}
+      <div class="form-group">
+        {{form.submit(class="btn btn-primary")}}
+      </div>
+
+    </form>
+  </div>
+{% endblock %}
