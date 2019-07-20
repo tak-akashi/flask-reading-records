@@ -55,11 +55,9 @@ def update(id):
 
     if form.validate_on_submit():
 
-        # author = db.session.query(Author).filter(Author.id == form.author.data).first()
         book.title = form.title.data
         book.genre = form.genre.data
         book.author_id = form.author.data
-        # book.author = author.name
         book.date = form.date.data
         book.recommended = form.recommended.data
         book.comment = form.comment.data
