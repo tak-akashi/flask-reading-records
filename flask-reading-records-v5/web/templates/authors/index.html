@@ -1,0 +1,42 @@
+<!-- web/templates/index.html -->
+
+{% extends "base.html" %}
+{% block content %}
+<br>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">著者名</th>
+      <th scope="col">備考</th>
+    </tr>
+  </thead>
+
+  {% for author in authors.items%}
+      <tbody>
+        <tr>
+          <td> <a href="{{url_for('authors.update', id=author.id)}}">{{ author.name }} </a></td>
+          <td> {{ author.extras }} </td>
+        </tr>
+      </tbody>
+  {% endfor %}
+</table>
+
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    {% for page in authors.iter_pages(left_edge=2, left_current=2, right_current=5, right_edge=2) %}
+      {% if page %}
+        {% if page != authors.page %}
+            <li class="page-item"><a class="page-link" href="{{ url_for('authors.index_author_pages', page_num=page) }}">{{ page }}</a></li>
+        {% else %}
+            <li class="page-item active"><a class="page-link">{{ page }}</a></li>
+        {% endif %}
+      {% else %}
+        <span> ... </span>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</nav>
+
+
+{% endblock %}
