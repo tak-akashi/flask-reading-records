@@ -4,6 +4,7 @@ from web.forms import BookForm, BookUpdateForm
 from web.models import Book, Author
 from flask import render_template, redirect, url_for, request
 from flask import Blueprint
+import datetime
 
 books = Blueprint('books', __name__)
 
@@ -30,8 +31,10 @@ def register():
     form = BookForm()
     form.author.choices = authors_list
 
+    if form.date.data is None:
+        form.date.data = datetime.datetime.today()
+
     if form.validate_on_submit():
-        # book = Book(title=form.title.data, author=form.author.data, genre=form.genre.data, date=form.date.data)
         book = Book(title=form.title.data,genre=form.genre.data, date=form.date.data, recommended=form.recommended.data, comment=form.comment.data, author_id=form.author.data)
         db.session.add(book)
         db.session.commit()
