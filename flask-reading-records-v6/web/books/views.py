@@ -48,7 +48,6 @@ def update(id):
     registered_authors = db.session.query(Author).order_by('name')
     authors_list = [(i.id, i.name) for i in registered_authors]
 
-    # form = BookForm()
     form = BookUpdateForm()
 
     form.author.choices = authors_list
